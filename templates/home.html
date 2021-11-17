@@ -1,0 +1,23 @@
+{% extends "layout2.html" %}
+{% block body %}
+
+<div class = "container-fluid">
+    <img src = "https://wcms-prod-admin.ntu.edu.sg/images/default-source/from-figma/ntu-placeholder-d.jpg?sfvrsn=d4050a9e_2"
+    class = "rounded float-start ml-2" style="max-width:50%;">
+</div>
+<div class = "container ml-3 pt-4">
+    <h4> Today's Confessions:  </h4>
+    {% for key, value in postinfo.items() %}
+    <div class="card border - secondary mb-3" style="max-width: 30rem;">
+        <div class="card-body">
+                <h5 class="card-title">{{key}}</h5>
+                <p class="card-text">{{value}}</p>
+        </div>
+    </div>
+    {% endfor %}
+    <a class="btn btn-primary" href="/add/{{username}}" role="button">Add Confession</a>
+</div>
+
+{% endblock %}
+
+
