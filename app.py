@@ -1,7 +1,7 @@
 from flask import Flask, flash, redirect, render_template, request, session, abort, url_for
 import csv
 import re
-import os
+import sys
 
 #Main App Directory
 app = Flask(__name__)
@@ -76,9 +76,43 @@ def login():
             return render_template('login.html', error=error)
     return render_template('login.html', error=error)
 
-@app.route('/home/<username>')
+@app.route('/home/<username>', methods = ['GET','POST'])
 def home(username): 
-    with open('posts-mj.csv', mode = 'r') as posts:
+    #when user likes a post
+    if request.method == 'POST':
+        with open ('posts.csv', mode = 'r') as likepost: 
+            lines = likepost.readlines()
+            likepost.close()
+            print('line',lines)
+            newfile = open('posts.csv', mode = 'w') 
+            for row in lines: 
+                row = row.split(',')
+                print('row:',row)
+                print('row7:', row[7])
+                print('req id', request.form['id'])
+                if int(row[7]) == int(request.form['id']):
+                    if request.form['category'] == 'post':
+                        likeslist = row[3]+username+';' 
+                        print('likesarray: ',likeslist)
+                        newrow = row
+                        newrow[3] = likeslist
+                        print('newrow',newrow)
+                        joined_string = ",".join(map(str,newrow))
+                        newfile.write(joined_string)
+                    elif request.form['category'] == 'redressal':
+                        likeslist = row[6]+username+';' 
+                        print('likesarray: ',likeslist)
+                        newrow = row
+                        newrow[6] = likeslist
+                        print('newrow',newrow)
+                        joined_string = ",".join(map(str,newrow))
+                        newfile.write(joined_string)
+                else: 
+                    joined_string = ",".join(map(str,row))
+                    newfile.write(joined_string)
+            newfile.close()
+    #display posts
+    with open('posts.csv', mode = 'r') as posts:
         reader = csv.reader(posts, delimiter = ',')
         i = 1
         postinfo = {}
@@ -86,13 +120,68 @@ def home(username):
         for row in reader:
             title = row[1]
             text = row[2]
-            postinfo[title] = text
+            likesnumber = len(row[3].split(';'))-1
+            redressal = row[5]
+            redressallikes = len(row[6].split(';'))-1
+            id = row[7]
+            if username in row[3]:
+                likedbyme = 1
+            else: 
+                likedbyme = 0
+            if username in row[6]:
+                r_likedbyme = 1
+            else: 
+                r_likedbyme = 0
+            post = {}
+            post['Title'] = title
+            post['Text'] = text
+            post['Likes'] = likesnumber
+            post['Liked'] = likedbyme
+            post['Redressal'] = redressal
+            post['R_likes'] = redressallikes
+            post['R_likedbyme'] = r_likedbyme
+            post['id'] = id
+            postinfo[i] = post
             i = i+1
     return render_template('home.html', **locals())
 
-@app.route('/staff/<username>')
+@app.route('/staff/<username>', methods = ['GET','POST'])
 def staff(username): 
-    with open('posts-mj.csv', mode = 'r') as posts:
+   #when user likes a post
+    if request.method == 'POST':
+        with open ('posts.csv', mode = 'r') as likepost: 
+            lines = likepost.readlines()
+            likepost.close()
+            print('line',lines)
+            newfile = open('posts.csv', mode = 'w') 
+            for row in lines: 
+                row = row.split(',')
+                print('row:',row)
+                print('row7:', row[7])
+                print('req id', request.form['id'])
+                if int(row[7]) == int(request.form['id']):
+                    if request.form['category'] == 'post':
+                        likeslist = row[3]+username+';' 
+                        print('likesarray: ',likeslist)
+                        newrow = row
+                        newrow[3] = likeslist
+                        print('newrow',newrow)
+                        joined_string = ",".join(map(str,newrow))
+                        newfile.write(joined_string)
+                    elif request.form['category'] == 'redressal':
+                        likeslist = row[6]+username+';' 
+                        print('likesarray: ',likeslist)
+                        newrow = row
+                        newrow[6] = likeslist
+                        print('newrow',newrow)
+                        joined_string = ",".join(map(str,newrow))
+                        newfile.write(joined_string)
+                else: 
+                    joined_string = ",".join(map(str,row))
+                    newfile.write(joined_string)
+            newfile.close()
+    #display posts
+    with open('posts.csv', mode = 'r') as posts:
         reader = csv.reader(posts, delimiter = ',')
         i = 1
         postinfo = {}
@@ -100,7 +189,28 @@ def staff(username):
         for row in reader:
             title = row[1]
             text = row[2]
-            postinfo[title] = text
+            likesnumber = len(row[3].split(';'))-1
+            redressal = row[5]
+            redressallikes = len(row[6].split(';'))-1
+            id = row[7]
+            if username in row[3]:
+                likedbyme = 1
+            else: 
+                likedbyme = 0
+            if username in row[6]:
+                r_likedbyme = 1
+            else: 
+                r_likedbyme = 0
+            post = {}
+            post['Title'] = title
+            post['Text'] = text
+            post['Likes'] = likesnumber
+            post['Liked'] = likedbyme
+            post['Redressal'] = redressal
+            post['R_likes'] = redressallikes
+            post['R_likedbyme'] = r_likedbyme
+            post['id'] = id
+            postinfo[i] = post
             i = i+1
     return render_template('staff.html', **locals())
 
@@ -108,6 +218,7 @@ def staff(username):
 def add(username):
     error = None 
     auths = []
+    #to generate list of authorities option
     with open('authorities.csv', mode = 'r') as authlist: 
         reader = csv.reader(authlist)
         for row in reader: 
@@ -115,16 +226,34 @@ def add(username):
             rowtext = str(row) [2:-2]
             print(rowtext)
             auths.append(rowtext)
+        authlist.close()
     print(auths)
     if request.method == 'POST':
-        with open('posts-mj.csv', mode = 'a') as csvfile: 
+        #to determine ID
+        with open('posts.csv', mode = 'r') as readfile: 
+            reader = csv.reader(readfile)
+            i = 1
+            for row in reader:
+                i = i+1
+            readfile.close()
+        with open('posts.csv', mode = 'a') as csvfile: 
+            #Format: Authority,Title,Post,PostLikes,Email,Redressal,RedressalLikes,ID
             fields = []
             print(request.form['auth'])
             fields.append(request.form['auth'])
             fields.append(request.form['title'])
             fields.append(request.form['confession'])
+            likes = ""
+            fields.append(likes)
             fields.append(username)
+            redressal = ""
+            fields.append(redressal)
+            redressallikes = ""
+            fields.append(redressallikes)
+            fields.append(str(i))
+            print(fields)
             for element in fields: 
+                print(element)
                 csvfile.write(element + ',')
             csvfile.write('\n')
             error = 'Post created.'
@@ -134,6 +263,30 @@ def add(username):
 
 @app.route('/redress/<username>', methods = ['GET', 'POST'])
 def redress(username):
+    #when authority redresses a post
+    if request.method == 'POST':
+        with open ('posts.csv', mode = 'r') as redresspost: 
+            lines = redresspost.readlines()
+            redresspost.close()
+            print('line',lines)
+            newfile = open('posts.csv', mode = 'w') 
+            for row in lines: 
+                row = row.split(',')
+                print('row:',row)
+                print('row7:', row[7])
+                print('req id', request.form['id'])
+                if int(row[7]) == int(request.form['id']):
+                    redressal = request.form['redressal']
+                    newrow = row
+                    newrow[5] = redressal
+                    print('newrow',newrow)
+                    joined_string = ",".join(map(str,newrow))
+                    newfile.write(joined_string)
+                else: 
+                    joined_string = ",".join(map(str,row))
+                    newfile.write(joined_string)
+            newfile.close()
+
     with open('users.csv', mode = 'r') as identity: 
         readuser = csv.reader(identity, delimiter = ',')
         for row in readuser: 
@@ -141,7 +294,7 @@ def redress(username):
                 name = row[3]
                 print(name)
                 continue
-    with open('posts-mj.csv', mode = 'r') as posts:
+    with open('posts.csv', mode = 'r') as posts:
         reader = csv.reader(posts, delimiter = ',')
         i = 1
         postinfo = {}
@@ -150,7 +303,28 @@ def redress(username):
             if row[0] == name:
                 title = row[1]
                 text = row[2]
-                postinfo[title] = text
+                likesnumber = len(row[3].split(';'))-1
+                redressal = row[5]
+                redressallikes = len(row[6])
+                id = row[7]
+                if username in row[3]:
+                    likedbyme = 1
+                else: 
+                    likedbyme = 0
+                if username in row[6]:
+                    r_likedbyme = 1
+                else: 
+                    r_likedbyme = 0
+                post = {}
+                post['Title'] = title
+                post['Text'] = text
+                post['Likes'] = likesnumber
+                post['Liked'] = likedbyme
+                post['Redressal'] = redressal
+                post['R_likes'] = redressallikes
+                post['R_likedbyme'] = r_likedbyme
+                post['id'] = id
+                postinfo[i] = post
                 i = i+1
         if len(postinfo) == 0: 
             postinfo['No Confessions for Me!'] = '' 

@@ -10,8 +10,37 @@
     {% for key, value in postinfo.items() %}
     <div class="card border - secondary mb-3" style="max-width: 30rem;">
         <div class="card-body">
-                <h5 class="card-title">{{key}}</h5>
-                <p class="card-text">{{value}}</p>
+            <h5 class="card-title">{{value.get("Title")}}</h5>
+            <h6 class="card-subtitle mb-2 text-muted">{{value.get("Likes")}} Likes</h6>
+            <p class="card-text">{{value.get("Text")}}</p>
+            {% if value.get("Liked") == 0 %}
+            <form action = "" method = post>
+                <input type="hidden" name="id" value={{key}}>
+                <input type="hidden" name="category" value='post'>
+                <input class="btn btn-default" type="submit" value="Like Post">
+            </form>
+            {% endif %}
+            {% if value.get("Liked") == 1 %}
+                <h6 class="card-subtitle mb-2 text-muted">Liked </h6>
+            {% endif %}
+            {% if value.get("Redressal")|length %}
+                <div class="alert alert-danger" role="alert">
+                    The authority responded - check it out!
+                </div>
+                <h5 class="card-title">Redressal:</h5>
+                <h6 class="card-subtitle mb-2 text-muted">{{value.get("R_likes")}} Likes</h6>
+                <p class="card-text">{{value.get("Redressal")}}</p>
+                {% if value.get("R_likedbyme") == 0 %}
+                <form action = "" method = post>
+                    <input type="hidden" name="id" value={{key}}>
+                    <input type="hidden" name="category" value='redressal'>
+                    <input class="btn btn-default" type="submit" value="Like Redressal">
+                </form>
+                {% endif %}
+                {% if value.get("R_likedbyme") == 1 %}
+                    <h6 class="card-subtitle mb-2 text-muted">Liked </h6>
+                {% endif %}
+            {% endif %}
         </div>
     </div>
     {% endfor %}
