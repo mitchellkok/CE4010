@@ -17,7 +17,7 @@ def index():
 def register(): 
     error = None 
     if request.method == 'POST':
-        with open('users-mj.csv', mode = 'a') as csvfile: 
+        with open('users.csv', mode = 'a') as csvfile: 
             fields = []
             fields.append('Student')
             regex = r'\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,}\b'
@@ -48,7 +48,7 @@ def login():
         #print(request.form['username'])
         #print(request.form['password'])
         validated = 0
-        with open('users-mj.csv', mode = 'r') as csvfile: 
+        with open('users.csv', mode = 'r') as csvfile: 
             reader = csv.reader(csvfile)
             for row in reader: 
                 print(row[0])
@@ -78,7 +78,7 @@ def login():
 
 @app.route('/home/<username>')
 def home(username): 
-    with open('posts.csv', mode = 'r') as posts:
+    with open('posts-mj.csv', mode = 'r') as posts:
         reader = csv.reader(posts, delimiter = ',')
         i = 1
         postinfo = {}
@@ -92,7 +92,7 @@ def home(username):
 
 @app.route('/staff/<username>')
 def staff(username): 
-    with open('posts.csv', mode = 'r') as posts:
+    with open('posts-mj.csv', mode = 'r') as posts:
         reader = csv.reader(posts, delimiter = ',')
         i = 1
         postinfo = {}
@@ -117,7 +117,7 @@ def add(username):
             auths.append(rowtext)
     print(auths)
     if request.method == 'POST':
-        with open('posts.csv', mode = 'a') as csvfile: 
+        with open('posts-mj.csv', mode = 'a') as csvfile: 
             fields = []
             print(request.form['auth'])
             fields.append(request.form['auth'])
@@ -134,14 +134,14 @@ def add(username):
 
 @app.route('/redress/<username>', methods = ['GET', 'POST'])
 def redress(username):
-    with open('users-mj.csv', mode = 'r') as identity: 
+    with open('users.csv', mode = 'r') as identity: 
         readuser = csv.reader(identity, delimiter = ',')
         for row in readuser: 
             if row[1] == username: 
                 name = row[3]
                 print(name)
                 continue
-    with open('posts.csv', mode = 'r') as posts:
+    with open('posts-mj.csv', mode = 'r') as posts:
         reader = csv.reader(posts, delimiter = ',')
         i = 1
         postinfo = {}
