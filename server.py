@@ -7,7 +7,6 @@ def open_csv(login_csv_fn, symkey_fn):
     sym_file_decrypt(symkey_fn, login_csv_fn)
     df = pd.read_csv(login_csv_fn)
     sym_file_encrypt(symkey_fn, login_csv_fn)
-
     return df
 
 
