@@ -22,7 +22,9 @@ def sym_file_encrypt(symkey_fn, target_fn):
     # opening the file in write mode and writing the encrypted data
     with open(target_fn, 'wb') as enc_file:
         enc_file.write(encrypted)
+        enc_file.close()
     
+    print("\tENCRYPTED:", target_fn, "using", symkey_fn)
     return enc_file
 
 
@@ -39,9 +41,12 @@ def sym_file_decrypt(symkey_fn, target_fn):
     # opening the file in write mode and writing the decrypted data
     with open(target_fn, 'wb') as dec_file:
         dec_file.write(decrypted)
+        enc_file.close()
 
+    print("\tDECRYPTED: ", target_fn, "using", symkey_fn)
     return dec_file
 
 # sym_key_gen('p_symkey.key')
-# sym_file_encrypt('symkey.key', 'login.csv')
+# sym_file_encrypt('u_symkey.key', 'users.csv')
+# sym_file_encrypt('p_symkey.key', 'posts.csv')
 # sym_file_decrypt('symkey.key', 'login.csv')
