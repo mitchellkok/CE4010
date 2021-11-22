@@ -46,7 +46,8 @@ def sym_file_decrypt(symkey_fn, target_fn):
     print("\tDECRYPTED: ", target_fn, "using", symkey_fn)
     return dec_file
 
-# sym_key_gen('p_symkey.key')
+# # sym_key_gen('p_symkey.key')
 # sym_file_encrypt('u_symkey.key', 'users.csv')
 # sym_file_encrypt('p_symkey.key', 'posts.csv')
-# sym_file_decrypt('symkey.key', 'login.csv')
+# sym_file_decrypt('u_symkey.key', 'users.csv')
+# sym_file_decrypt('p_symkey.key', 'posts.csv')
