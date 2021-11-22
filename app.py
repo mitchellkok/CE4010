@@ -368,12 +368,13 @@ def redress(username):
                     newfile.write(joined_string)
             newfile.close()
 
+    name = ''
     with open(users_fn, mode = 'r') as identity: 
         readuser = csv.reader(identity, delimiter = ',')
         for row in readuser: 
             if row[1] == username: 
                 name = row[3]
-                print(name)
+                print(name, type(name))
                 continue
     with open(posts_fn, mode = 'r') as posts:
         reader = csv.reader(posts, delimiter = ',')
