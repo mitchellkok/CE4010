@@ -18,7 +18,7 @@ While platforms such as NTU Confessions and NTU Reddit are widely available for 
 2. From the terminal, ctrl+click the link shown: *Running on http://x.x.x.x:1025/*
 3. The application's main page should be opened in your default browser
 
-Site Preview: <img width="960" alt="Capture" src="https://user-images.githubusercontent.com/65217872/143465633-d3c393d4-d846-4a3e-89a4-cfa507809e6d.PNG">
+Site Preview: <kbd> <img width="960" alt="Capture" src="https://user-images.githubusercontent.com/65217872/143465633-d3c393d4-d846-4a3e-89a4-cfa507809e6d.PNG"> </kbd>
 
 
 4. You may login using the following account details:\
