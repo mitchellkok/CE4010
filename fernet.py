@@ -42,6 +42,7 @@ def sym_file_decrypt(symkey_fn, target_fn):
         dec_file.write(decrypted)
         enc_file.close()
     return dec_file
+    
 
 def fernet_read_file(symkey_fn, target_fn):
     with open(symkey_fn, 'rb') as symkey_file:    # opening the key
@@ -66,6 +67,7 @@ def fernet_write_file(symkey_fn, target_fn, new_string):
 
     with open(target_fn, 'w') as file:
         file.write(encFile.decode("utf-8"))
+
 
 def fernet_verify_file(symkey_fn, target_fn):
     with open(symkey_fn, 'rb') as symkey_file:    # opening the key
