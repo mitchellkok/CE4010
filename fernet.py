@@ -24,8 +24,6 @@ def sym_file_encrypt(symkey_fn, target_fn):
     with open(target_fn, 'wb') as enc_file:
         enc_file.write(encrypted)
         enc_file.close()
-    
-    print("\tENCRYPTED:", target_fn, "using", symkey_fn)
     return enc_file
 
 
@@ -43,9 +41,8 @@ def sym_file_decrypt(symkey_fn, target_fn):
     with open(target_fn, 'wb') as dec_file:
         dec_file.write(decrypted)
         enc_file.close()
-
-    print("\tDECRYPTED: ", target_fn, "using", symkey_fn)
     return dec_file
+    
 
 def fernet_read_file(symkey_fn, target_fn):
     with open(symkey_fn, 'rb') as symkey_file:    # opening the key
@@ -71,6 +68,7 @@ def fernet_write_file(symkey_fn, target_fn, new_string):
     with open(target_fn, 'w') as file:
         file.write(encFile.decode("utf-8"))
 
+
 def fernet_verify_file(symkey_fn, target_fn):
     with open(symkey_fn, 'rb') as symkey_file:    # opening the key
         key = symkey_file.read()
@@ -88,7 +86,3 @@ def fernet_verify_file(symkey_fn, target_fn):
 # sym_file_encrypt('files/p_symkey.key', 'files/posts.csv')
 # sym_file_decrypt('files/u_symkey.key', 'files/users.csv')
 # sym_file_decrypt('files/p_symkey.key', 'files/posts.csv')
- 
-# csv = fernet_read_file('files/u_symkey.key', 'files/users.csv')
-# print(csv)
-# print(type(csv))
