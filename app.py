@@ -9,12 +9,12 @@ from fernet import *
 app = Flask(__name__)
 monitor = 0
 
-users_symkey_fn = 'u_symkey.key'
-posts_symkey_fn = 'p_symkey.key'
+users_symkey_fn = 'files/u_symkey.key'
+posts_symkey_fn = 'files/p_symkey.key'
 
-users_fn = 'users.csv'
-posts_fn = 'posts.csv'
-authorities_fn = 'authorities.csv'
+users_fn = 'files/users.csv'
+posts_fn = 'files/posts.csv'
+authorities_fn = 'files/authorities.csv'
 
 def csv_to_str(reader):
     new_string = ""

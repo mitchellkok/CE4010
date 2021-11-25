@@ -83,12 +83,12 @@ def fernet_verify_file(symkey_fn, target_fn):
     print("File " + target_fn + " verified!")
     
 
-# # sym_key_gen('p_symkey.key')
-# sym_file_encrypt('u_symkey.key', 'users.csv')
-# sym_file_encrypt('p_symkey.key', 'posts.csv')
-# sym_file_decrypt('u_symkey.key', 'users.csv')
-# sym_file_decrypt('p_symkey.key', 'posts.csv')
+# # sym_key_gen('files/p_symkey.key')
+# sym_file_encrypt('files/u_symkey.key', 'files/users.csv')
+# sym_file_encrypt('files/p_symkey.key', 'files/posts.csv')
+# sym_file_decrypt('files/u_symkey.key', 'files/users.csv')
+# sym_file_decrypt('files/p_symkey.key', 'files/posts.csv')
  
-# csv = fernet_read_file('u_symkey.key', 'users.csv')
+# csv = fernet_read_file('files/u_symkey.key', 'files/users.csv')
 # print(csv)
 # print(type(csv))
