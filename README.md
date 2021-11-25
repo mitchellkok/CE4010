@@ -34,13 +34,13 @@ Site Preview: <img width="960" alt="Capture" src="https://user-images.githubuser
 5. Suggested Test Cases:
 
 >Student:
->- Adding New Confession *NOTE: Current system only supports confessions without commas and paragraphing*
+>- Adding New Confession *(NOTE: Current system only supports confessions without commas and paragraphing)*
 >- Liking Other Confessions
 >- Liking Authority Redressals
 >
 >
 >Staff:
->- Redressing New Confession *NOTE: Current system only supports confessions without commas and paragraphing*
+>- Redressing New Confession *(NOTE: Current system only supports redressals without commas and paragraphing)*
 >- Liking Other Confessions
 >- Liking Authority Redressals
 
