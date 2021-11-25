@@ -371,4 +371,7 @@ def redress(username):
     return render_template('redress.html', **locals())
 
 if __name__ == "__main__":
+    fernet_verify_file(posts_symkey_fn, posts_fn)
+    fernet_verify_file(users_symkey_fn, users_fn)
+
     app.run(host='0.0.0.0', port=1025)

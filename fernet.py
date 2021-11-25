@@ -71,6 +71,18 @@ def fernet_write_file(symkey_fn, target_fn, new_string):
     with open(target_fn, 'w') as file:
         file.write(encFile.decode("utf-8"))
 
+def fernet_verify_file(symkey_fn, target_fn):
+    with open(symkey_fn, 'rb') as symkey_file:    # opening the key
+        key = symkey_file.read()
+    fernet = Fernet(key)    # using the key
+
+    with open(target_fn, 'r') as file:
+        encFile = bytes(file.read(), 'utf-8')
+
+    fernet.extract_timestamp(encFile)
+    print("File " + target_fn + " verified!")
+    
+
 # # sym_key_gen('p_symkey.key')
 # sym_file_encrypt('u_symkey.key', 'users.csv')
 # sym_file_encrypt('p_symkey.key', 'posts.csv')
