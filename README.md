@@ -16,7 +16,9 @@ While platforms such as NTU Confessions and NTU Reddit are widely available for 
 #### Running the code
 1. After setting up the environment, run `python app.py`
 2. From the terminal, ctrl+click the link shown: *Running on http://x.x.x.x:1025/*
-Preview: <img width="448" alt="snippet" src="https://user-images.githubusercontent.com/65217872/143465093-3e3db84f-3b3a-4470-9a22-cfb4c7c7cec8.PNG">
+
+Site Preview: <img width="960" alt="Capture" src="https://user-images.githubusercontent.com/65217872/143465633-d3c393d4-d846-4a3e-89a4-cfa507809e6d.PNG">
+
 
 3. The application's main page should be opened in your default browser
 4. You may login using the following account details:\
