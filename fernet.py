@@ -1,5 +1,6 @@
 """ Script for Symmetric Key Encryption/Decryption """
 from cryptography.fernet import Fernet
+import csv
 
 def sym_key_gen(symkey_fn):
     key = Fernet.generate_key()    # key generation
@@ -46,8 +47,36 @@ def sym_file_decrypt(symkey_fn, target_fn):
     print("\tDECRYPTED: ", target_fn, "using", symkey_fn)
     return dec_file
 
+def fernet_read_file(symkey_fn, target_fn):
+    with open(symkey_fn, 'rb') as symkey_file:    # opening the key
+        key = symkey_file.read()
+    fernet = Fernet(key)    # using the key
+
+    with open(target_fn, 'r') as file:
+        encFile = bytes(file.read(), 'utf-8')
+
+    decFile = fernet.decrypt(encFile).decode()
+    reader = csv.reader(decFile.splitlines())
+    return reader
+
+
+def fernet_write_file(symkey_fn, target_fn, new_string):
+    with open(symkey_fn, 'rb') as symkey_file:    # opening the key
+        key = symkey_file.read()
+    fernet = Fernet(key)    # using the key
+
+    new_string = new_string.lstrip()    # remove leading newline
+    encFile = fernet.encrypt(bytes(new_string, 'utf-8'))
+
+    with open(target_fn, 'w') as file:
+        file.write(encFile.decode("utf-8"))
+
 # # sym_key_gen('p_symkey.key')
 # sym_file_encrypt('u_symkey.key', 'users.csv')
 # sym_file_encrypt('p_symkey.key', 'posts.csv')
 # sym_file_decrypt('u_symkey.key', 'users.csv')
 # sym_file_decrypt('p_symkey.key', 'posts.csv')
+ 
+# csv = fernet_read_file('u_symkey.key', 'users.csv')
+# print(csv)
+# print(type(csv))
