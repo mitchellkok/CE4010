@@ -8,7 +8,7 @@
 <div class = "container ml-3 pt-4">
     <h4> Today's Confessions:  </h4>
     {% for key, value in postinfo.items() %}
-    <div class="card border - secondary mb-3" style="max-width: 30rem;">
+    <div class="card border - secondary mb-3" style="max-width: 60rem;">
         <div class="card-body">
             <h5 class="card-title">{{value.get("Title")}}</h5>
             <h6 class="card-subtitle mb-2 text-muted">{{value.get("Likes")}} Likes</h6>
@@ -24,7 +24,7 @@
                 <h6 class="card-subtitle mb-2 text-muted">Liked </h6>
             {% endif %}
             {% if value.get("Redressal")|length %}
-                <div class="alert alert-danger" role="alert">
+                <div class="alert alert-danger mt-1" role="alert">
                     The authority responded - check it out!
                 </div>
                 <h5 class="card-title">Redressal:</h5>

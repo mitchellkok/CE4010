@@ -381,12 +381,15 @@ def redress(username):
         i = 1
         postinfo = {}
         username = username
+        pendingredressals = 0
         for row in reader:
             if row[0] == name:
                 title = row[1]
                 text = row[2]
                 likesnumber = len(row[3].split(';'))-1
                 redressal = row[5]
+                if redressal == "": 
+                    pendingredressals = pendingredressals + 1
                 redressallikes = len(row[6])
                 id = row[7]
                 if username in row[3]:
