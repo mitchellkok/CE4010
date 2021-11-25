@@ -16,11 +16,11 @@ While platforms such as NTU Confessions and NTU Reddit are widely available for 
 #### Running the code
 1. After setting up the environment, run `python app.py`
 2. From the terminal, ctrl+click the link shown: *Running on http://x.x.x.x:1025/*
+3. The application's main page should be opened in your default browser
 
 Site Preview: <img width="960" alt="Capture" src="https://user-images.githubusercontent.com/65217872/143465633-d3c393d4-d846-4a3e-89a4-cfa507809e6d.PNG">
 
 
-3. The application's main page should be opened in your default browser
 4. You may login using the following account details:\
 \
 &nbsp;&nbsp;&nbsp;&nbsp;UserType: *Student*\
@@ -30,6 +30,7 @@ Site Preview: <img width="960" alt="Capture" src="https://user-images.githubuser
 &nbsp;&nbsp;&nbsp;&nbsp;UserType: *Staff*\
 &nbsp;&nbsp;&nbsp;&nbsp;Username/Email: *och@gmail.com*\
 &nbsp;&nbsp;&nbsp;&nbsp;Password: *123*
+
 5. Suggested Test Cases:
 
 >Student:
