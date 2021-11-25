@@ -7,8 +7,23 @@
 </div>
 <div class = "container ml-3 pt-4">
     <h4> Confessions for me:  </h4>
+    
+    {% if pendingredressals|int>1 %}
+        <div class="alert alert-danger mt-1" role="alert">
+            There are {{pendingredressals}} PENDING confessions.
+        </div>
+    {% elseif pendingredressals|int>0 %}
+        <div class="alert alert-danger mt-1" role="alert">
+            There is {{pendingredressals}} PENDING confession.
+        </div>
+    {% else %}
+        <div class="alert alert-primary mt-1" role="alert">
+            There are no unredressed confessions. 
+        </div>
+    {% endif %}
+    
     {% for key, value in postinfo.items() %}
-    <div class="card border - secondary mb-3" style="max-width: 30rem;">
+    <div class="card border - secondary mb-3" style="max-width: 60rem;">
         <div class="card-body">
             <h5 class="card-title">{{value.get("Title")}}</h5>
             <h6 class="card-subtitle mb-2 text-muted">{{value.get("Likes")}} Likes</h6>
