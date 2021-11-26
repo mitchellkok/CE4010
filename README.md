@@ -1,4 +1,4 @@
-﻿# CE4010 Applied Cryptography Course Project Topic #2: "TellNTU"
+﻿# CE4010 Applied Cryptography Course Project<br/>Topic #2 : "TellNTU"
 
 ## Project Brief 
 
@@ -48,11 +48,11 @@ Site Preview: <kbd> <img width="960" alt="Capture" src="https://user-images.gith
 ## Notes
 #### 'TellNTU' is secured by Fernet Symmetric Key Encryption
 1. Key Security
-&nbsp;&nbsp;&nbsp;&nbsp;i) Key generated using os.urandom(), which is a Cryptographically Secure Pseudo-Random Number Generator (CSPRNG) suitable for cryptographic use.
-&nbsp;&nbsp;&nbsp;&nbsp;ii) CSV files are only decrypted by app.py; the key is never shared with any other party, minimising opportunity for key leakage
+- Key generated using os.urandom(), which is a Cryptographically Secure Pseudo-Random Number Generator (CSPRNG) suitable for cryptographic use.
+- CSV files are only decrypted by app.py; the key is never shared with any other party, minimising opportunity for key leakage
 2. Information Disclosure
-&nbsp;&nbsp;&nbsp;&nbsp;i) CSV files remain encrypted between function calls (i.e. CSV files do not remain decrypted for the whole duration that app.py is running)
-&nbsp;&nbsp;&nbsp;&nbsp;ii)CSV data is displayed selectively by app.py; only relevant data is displayed via the HTML files, and the rest is hidden within the Python script
+- CSV files remain encrypted between function calls (i.e. CSV files do not remain decrypted for the whole duration that app.py is running)
+- CSV data is displayed selectively by app.py; only relevant data is displayed via the HTML files, and the rest is hidden within the Python script
 
 ## Libraries Used
 cffi==1.15.0\
