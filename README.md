@@ -47,13 +47,15 @@ Site Preview: <kbd> <img width="960" alt="Capture" src="https://user-images.gith
 
 ## Notes
 #### 'TellNTU' is secured by Fernet Symmetric Key Encryption
-**1. Key Security**
+1. Key Security
 - Key generated using os.urandom(), which is a Cryptographically Secure Pseudo-Random Number Generator (CSPRNG) suitable for cryptographic use.
-- CSV files are only decrypted by app.py; the key is never shared with any other party, minimising opportunity for key leakage.\
- **2. Information Disclosure**
+- CSV files are only decrypted by app.py; the key is never shared with any other party, minimising opportunity for key leakage.
+
+ 2. Information Disclosure
 - CSV files remain encrypted between function calls (i.e. CSV files do not remain decrypted for the whole duration that app.py is running).
-- CSV data is displayed selectively by app.py; only relevant data is displayed via the HTML files, and the rest is hidden within the Python script.\
-**3. Data Verification**
+- CSV data is displayed selectively by app.py; only relevant data is displayed via the HTML files, and the rest is hidden within the Python script.
+
+3. Data Verification
 - CSV files are verified using the HMAC tail when the application is first started, and with every subsequent access to the files within the application.
 
 ## Libraries Used
