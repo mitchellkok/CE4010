@@ -59,13 +59,13 @@ Site Preview: <kbd> <img width="960" alt="Capture" src="https://user-images.gith
     - CSV files are verified using the HMAC tail when the application is first started, and with every subsequent access to the files within the application.
 
 ## Libraries Used
-cffi==1.15.0\
-click==8.0.3\
-cryptography==36.0.0\
-Flask==2.0.2\
-itsdangerous==2.0.1\
-Jinja2==3.0.3\
-MarkupSafe==2.0.1\
-pycparser==2.21\
-Werkzeug==2.0.2\
+- cffi==1.15.0
+- click==8.0.3
+- cryptography==36.0.0
+- Flask==2.0.2
+- itsdangerous==2.0.1
+- Jinja2==3.0.3
+- MarkupSafe==2.0.1
+- pycparser==2.21
+- Werkzeug==2.0.2
 
