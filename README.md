@@ -21,7 +21,7 @@ While platforms such as NTU Confessions and NTU Reddit are widely available for 
 Site Preview: <kbd> <img width="960" alt="Capture" src="https://user-images.githubusercontent.com/65217872/143465633-d3c393d4-d846-4a3e-89a4-cfa507809e6d.PNG"> </kbd>
 
 
-4. You may login using the following account details:\
+4. You may login using the following account details or register your own Student account:\
 \
 &nbsp;&nbsp;&nbsp;&nbsp;UserType: *Student*\
 &nbsp;&nbsp;&nbsp;&nbsp;Username/Email: *sallyyeo@gmail.com*\
