@@ -2,7 +2,7 @@
 
 ## Project Brief 
 
-#### Motivation For Project: 
+#### Motivation For Project
 While platforms such as NTU Confessions and NTU Reddit are widely available for NTU students to post their grievances anonymously, these platforms go unnoticed by authorities within NTU. 'TellNTU' is here to bridge the gap - to give NTU students a platform to reach out to the authorities anonymously and to give the authorities a space to respond to grievances from NTU students and build a more transparent and cohesive campus experience.
 
 
