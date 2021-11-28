@@ -48,7 +48,7 @@ Site Preview: <kbd> <img width="960" alt="Capture" src="https://user-images.gith
 ## Notes
 #### 'TellNTU' is secured by Fernet Symmetric Key Encryption
 1. Key Security
-    * Key generated using os.urandom(), which is a Cryptographically Secure Pseudo-Random Number Generator (CSPRNG) suitable for cryptographic use.
+    - Key generated using os.urandom(), which is a Cryptographically Secure Pseudo-Random Number Generator (CSPRNG) suitable for cryptographic use.
     - CSV files are only decrypted by app.py; the key is never shared with any other party, minimising opportunity for key leakage.
 
  2. Information Disclosure
