@@ -6,6 +6,24 @@
 While platforms such as NTU Confessions and NTU Reddit are widely available for NTU students to post their grievances anonymously, these platforms go unnoticed by authorities within NTU. 'TellNTU' is here to bridge the gap - to give NTU students a platform to reach out to the authorities anonymously and to give the authorities a space to respond to grievances from NTU students and build a more transparent and cohesive campus experience.
 
 
+## Implementation Details
+#### 'TellNTU' is secured by Fernet Symmetric Key Encryption
+Since the encrypted data is only accessed by the application, there is no need for an encryption key to be shared. Hence symmetric key encryption was suitable as the key resides only with the application. We settled on Fernet, which is based on 128-bit AES in CBC mode, for our data encryption. It was ideal for our project for the following reasons:
+1. Key Security
+    - Key generated using os.urandom(), which is a Cryptographically Secure Pseudo-Random Number Generator (CSPRNG) suitable for cryptographic use.
+    - CSV files are only decrypted by app.py; the key is never shared with any other party, minimising opportunity for key leakage.
+
+ 2. Information Disclosure
+    - All decyption is done within the application, meaning that there is no plaintext in transit at any point in time.
+    - CSV files remain encrypted between function calls (i.e. CSV files do not remain decrypted for the whole duration that app.py is running).
+    - CSV data is displayed selectively by app.py; only relevant data is displayed via the HTML files, and the rest is hidden within the Python script.
+
+3. Data Verification
+    - CSV files are verified using the HMAC tail when the application is first started, and with every subsequent access to the files within the application.
+
+#### 'TellNTU' is powered by Flask web framework
+This implementation runs on a Flask local development server, although the final aim would be to deploy the application to the cloud.
+
 ## Instructions for Code Usage
 
 #### Setting up the environment
@@ -43,20 +61,6 @@ Site Preview: <kbd> <img width="960" alt="Capture" src="https://user-images.gith
 >- Redressing New Confession *(NOTE: Current system only supports redressals without commas and paragraphing)*
 >- Liking Other Confessions
 >- Liking Authority Redressals
-
-
-## Notes
-#### 'TellNTU' is secured by Fernet Symmetric Key Encryption
-1. Key Security
-    - Key generated using os.urandom(), which is a Cryptographically Secure Pseudo-Random Number Generator (CSPRNG) suitable for cryptographic use.
-    - CSV files are only decrypted by app.py; the key is never shared with any other party, minimising opportunity for key leakage.
-
- 2. Information Disclosure
-    - CSV files remain encrypted between function calls (i.e. CSV files do not remain decrypted for the whole duration that app.py is running).
-    - CSV data is displayed selectively by app.py; only relevant data is displayed via the HTML files, and the rest is hidden within the Python script.
-
-3. Data Verification
-    - CSV files are verified using the HMAC tail when the application is first started, and with every subsequent access to the files within the application.
 
 ## Libraries Used
 - cffi==1.15.0
